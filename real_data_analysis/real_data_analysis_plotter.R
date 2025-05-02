@@ -178,14 +178,14 @@ step_plot <- ggplot() +
        y = "Probability")
 
 
-ggplot_show <- function() {
-  print(beta_1_plot)
-  print(point_cloud)
-  print(step_plot)
-}
-ggplot_show()
+# ggplot_show <- function() {
+#   print(beta_1_plot)
+#   print(point_cloud)
+#   print(step_plot)
+# }
+# ggplot_show()
 
 # Save the plots
-ggsave("plots/beta_1_plot.png", plot = beta_1_plot, width = 8, height = 6)
-ggsave("plots/point_cloud.png", plot = point_cloud, width = 8, height = 6)
-ggsave("plots/step_plot.png", plot = step_plot, width = 8, height = 6)
+# ggsave("plots/beta_1_plot.png", plot = beta_1_plot, width = 8, height = 6)
+# ggsave("plots/point_cloud.png", plot = point_cloud, width = 8, height = 6)
+ggsave("plots/0.95_private_posterior_curves.png", plot = step_plot, width = 8, height = 6)

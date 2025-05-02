@@ -302,5 +302,5 @@ res$time <- unname(time$toc - time$tic)
 res$sdp <- dp_info$sdp
 
 print("Saving results")
-save(res, file = paste("linear_regression/dp_pf/conjugate_prior/results/lr_conj_n", n, "e", epsilon, "seed", seed, "p", hyper_params$N, "i", iter, ".RData", sep = ""))
+save(res, file = paste("linear_regression/dp_pf/conjugate_prior/data/dp_pf_conj_n", n, "e", epsilon, "seed", seed, "p", hyper_params$N, "i", iter, ".RData", sep = ""))
 print("Saved Results")

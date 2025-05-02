@@ -1,5 +1,5 @@
 
-setwd("location_scale/dp_pf")
+setwd("location_scale/dp_pf/data/")
 
 library(writexl)
 
@@ -81,4 +81,4 @@ str(df)
 colnames(df) <- c("method", "iter", "sample_size", "epsilon", "particles", "ESS", "mu_CI", "mu_coverage", "sigma_CI", "sigma_coverage", "time", "sdp0", "sdp1",
                   "post_mean_mu", "post_var_mu", "post_mean_sigma", "post_var_sigma", "time_per_ess")
 
-write_xlsx(df, "results/dp_pf_location_scale_sim_summary.xlsx")
+write_xlsx(df, "location_scale/dp_pf/summary/dp_pf_location_scale_sim_summary.xlsx")

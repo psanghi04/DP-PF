@@ -10,10 +10,10 @@ save_loc <- ""
 
 if (sim == "conj") {
   setwd("linear_regression/mcmc/conjugate_prior/data")
-  save_loc <- "linear_regression/mcmc/conjugate_prior/results/"
+  save_loc <- "linear_regression/mcmc/conjugate_prior/summary/"
 } else {
   setwd("linear_regression/mcmc/non_conjugate_prior/data")
-  save_loc <- "linear_regression/mcmc/non_conjugate_prior/results/"
+  save_loc <- "linear_regression/mcmc/non_conjugate_prior/summary/"
 }
 
 sum_stat <- function(name) {
@@ -72,4 +72,4 @@ colnames(df) <- c("method", "sample_size", "epsilon", "iterations", "mu_chain",
     "tau_chain", "phi_chain", "ess_DAMCMC_beta_0", "ess_DAMCMC_beta_1", "mean_estimate_0", "mean_estimate_1", "CI_0", "CI_1", "time")
 
 # Write the results to a file
-write_xlsx(df, paste(save_loc, sim, "_sim_summary.xlsx", sep = ""))
+write_xlsx(df, paste(save_loc, "mcmc_", sim, "_sim_summary.xlsx", sep = ""))

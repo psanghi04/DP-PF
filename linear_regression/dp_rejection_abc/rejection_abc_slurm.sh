@@ -10,13 +10,13 @@
 # Load R module, if necessary
 module load r/4.2
 
-SUB_DIR="linear_regression/rejection_abc/data"
+SUB_DIR="linear_regression/dp_rejection_abc/data"
 
 # Move Directory To Submission Folder
 cd $SUB_DIR
 
 # Set The Working Directory To The Location Of The R Script
-SCRIPT_DIR="linear_regression/rejection_abc"
+SCRIPT_DIR="linear_regression/dp_rejection_abc"
 
 # Define arrays of epsilon and sample_size values
 epsilons=(0.1 0.5 1.0 2.0)
@@ -45,7 +45,7 @@ for epsilon in "${epsilons[@]}"; do
 cd $SUB_DIR
 
 for iter in {1..100}; do
-  Rscript "$SCRIPT_DIR/rejection_lr_abc_laplace.R" -d \$iter -e $epsilon -n $sample_size -p $particle -i \$iter
+  Rscript "$SCRIPT_DIR/rejection_abc.R" -d \$iter -e $epsilon -n $sample_size -p $particle -i \$iter
 done
 EOT
    done

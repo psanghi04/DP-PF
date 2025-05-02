@@ -63,7 +63,7 @@ vicMat$AGEGRP <- ifelse(vicMat$AGEGRP<8, vicMat$AGEGRP*2.5+1, vicMat$AGEGRP*5-18
 # hist(vicMat[vicMat$Retir==0,][,2])
 # hist(vicMat[vicMat$Retir==1,][,2])
 
-vicMat = vicMat[2001:3000,] #### vicMat = vicMat[2901:3000,]
+vicMat = vicMat[2001:3000,]
 
 ## Pre-process data for DP
 zAGEGRP <- (vicMat$AGEGRP - min(vicMat$AGEGRP))/(max(vicMat$AGEGRP) - min(vicMat$AGEGRP)) 
@@ -444,53 +444,6 @@ ABC.SMC.Exact <- function(dp_info, hyper_params, params_bound){
   return(stepResultStore)
 }
 
-#  ### S2
-#  t = 1
-#  stepResultStore[[t]] = stepResult
-#  
-#  repeat {
-#    for (i in 1:hyper_params$N) {
-#      a = 1
-#      ### S2.1
-#      repeat {
-#        thetaNew[,i] = theta.update(t=t, thetaOld = thetaOld, weightOld = weightOld, hyper_params = hyper_params, params_bound = params_bound)
-#        
-#        modelData = rmodel(i = i, thetaNew = thetaNew, dp_info = dp_info)
-#        logr = threshold(privacyBudget = epSchedule[t], Data = modelData, dp_info = dp_info)
-#        u = runif(n = 1, min = 0, max = 1)
-#        #c
-#        if (logr > log(u)) {
-#          break
-#        }
-#        a = a + 1
-#      }
-#      
-#      ### S2.2
-#      weightNew[i] = weight.update(t=t, i=i, thetaNew = thetaNew, thetaOld = thetaOld, weightOld = weightOld, hyper_params = hyper_params, params_bound = params_bound, dprior = dprior)
-#      attempt[1,i] = a
-#      print(i)
-#    }
-#    
-#    thetaOld = thetaNew
-#    weightOld = weightNew / sum(weightNew)
-#    
-#    stepResult = rbind(thetaOld, weightOld, attempt)
-#    stepResultStore[[t+1]] = stepResult
-#    
-#    ### S3
-#    if (t >= hyper_params$stopTime) {
-#      break
-#    }
-#    print(t)
-#    t = t + 1
-#  }
-#  
-#  print(t)
-#  return(stepResultStore)
-#}
-
-#print(paste("Chain ID:", chain_id, sep = ""))
-
 tic()
 res <- ABC.SMC.Exact(dp_info = dp_info, hyper_params = hyper_params, params_bound = params_bound)
 time <- toc()
@@ -499,7 +452,7 @@ res$time = unname(time$toc - time$tic)
 res$sdp = dp_info$sdp
 
 if (no_chains > 1) {
-  save(res, file = paste("res_explore_n", dim(vicMat)[1], "e", epsilon, "q", dp_info$q, "a", shape, "r", scale, "mo", hp$mu0, "so", sigma_square_1, "mt", hp$mu1, "st", sigma_square_2, "chain_id", chain_id, ".RData", sep = ""))
+  save(res, file = paste("real_data_n", dim(vicMat)[1], "e", epsilon, "q", dp_info$q, "a", shape, "r", scale, "mo", hp$mu0, "so", sigma_square_1, "mt", hp$mu1, "st", sigma_square_2, "chain_id", chain_id, ".RData", sep = ""))
 } else {
-  save(res, file = paste("res_explore_n", dim(vicMat)[1], "e", epsilon, "q", dp_info$q, "a", shape, "r", scale,  "mo", hp$mu0, "so", sigma_square_1, "mt", hp$mu1, "st", sigma_square_2, ".RData", sep = ""))
+  save(res, file = paste("real_data_n", dim(vicMat)[1], "e", epsilon, "q", dp_info$q, "a", shape, "r", scale,  "mo", hp$mu0, "so", sigma_square_1, "mt", hp$mu1, "st", sigma_square_2, ".RData", sep = ""))
 }

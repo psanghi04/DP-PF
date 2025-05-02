@@ -1,6 +1,6 @@
 
-setwd("linear_regression/rejection_abc/data")
-save_loc <- "linear_regression/rejection_abc/results/"
+setwd("linear_regression/dp_rejection_abc/data")
+save_loc <- "linear_regression/dp_rejection_abc/summary/"
 
 library(writexl)
 
@@ -100,6 +100,4 @@ str(df)
 colnames(df) <- c("method", "iter", "sample_size", "epsilon", "particles", "ESS", "time", "post_mu", "post_tau", "post_beta_1", "var_mu", "var_tau", "var_beta_1", "width_mu", "width_tau", "width_beta_1", "coverage_mu", "coverage_tau", "coverage_beta_1", "sdp0", "sdp1", "sdp2", "sdp3", "sdp4")
 #df <- aggregate(. ~ epsilon + sample_size + particles, data = df[, -1], FUN = mean, na.rm = TRUE)
 
-print(df[10:13,])
-write_xlsx(df, paste(save_loc, "rejection_lr_abc_lap_type_2_final_sim_summary.xlsx", sep = ""))
-# write_xlsx(df, "/Users/pnav/Developer/ABC_SMC/smcDiffPrivacy/sims/naive_normal_log_sim_summary.xlsx")
+write_xlsx(df, paste(save_loc, "rejection_abc_sim_summary.xlsx", sep = ""))

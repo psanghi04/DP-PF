@@ -220,24 +220,6 @@ rejection_lr_abc_exact.lap <- function(dp_info, hyper_params, hyper_params_bound
   #return(step_result_store)
 }
 
-# rejection_lr_abc_ci <- replicate(n = 100,
-#                                  expr = 1,
-#                                  simplify = FALSE)
-
-#rejection_lr_abc_ci$time <- -1
-#rejection_lr_abc_ci$sdp <- dp_info$sdp
-
-#tictoc::tic()
-#for (l in 1:100) {
-#rejection_lr_abc_ci[[l]] <- rejection_lr_abc_exact.lap(dp_info = dp_info,
-#                              hyper_params = hyper_params,
-#                              hyper_params_bound = params_bound)
-  
-# save(rejection_lr_abc_ci, file = paste("rejection_lr_abc_lap_type_1_intermediate_n", dp_info$n, "e", dp_info$epsilon, "seed", seed, "p", hyper_params$N, "i", iter, ".RData", sep = ""))
-
-#}
-#time <- tictoc::toc()
-
 tictoc::tic()
 rejection_abc_ci <- rejection_abc_exact.lap(dp_info = dp_info,
                                      hyper_params = hyper_params,
@@ -247,5 +229,5 @@ time <- tictoc::toc()
 rejection_lr_abc_ci$time <- unname(time$toc - time$tic)
 rejection_lr_abc_ci$sdp <- dp_info$sdp
 
-save(rejection_lr_abc_ci, file = paste("linear_regression/rejection_abc/data/rejection_lr_abc_lap_type_3_final_n", dp_info$n, "e", dp_info$epsilon, "seed", seed, "p", hyper_params$N, "i", iter, ".RData", sep = ""))
+save(rejection_lr_abc_ci, file = paste("linear_regression/dp_rejection_abc/data/rejection_abc_n", dp_info$n, "e", dp_info$epsilon, "seed", seed, "p", hyper_params$N, "i", iter, ".RData", sep = ""))
 

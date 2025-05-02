@@ -11,10 +11,10 @@ save_loc <- ""
 
 if (sim == "conj") {
   setwd("linear_regression/dp_pf/conjugate_prior/data")
-  save_loc <- "linear_regression/dp_pf/conjugate_prior/results/"
+  save_loc <- "linear_regression/dp_pf/conjugate_prior/summary/"
 } else {
   setwd("linear_regression/dp_pf/non_conjugate_prior/data")
-  save_loc <- "linear_regression/dp_pf/non_conjugate_prior/results/"
+  save_loc <- "linear_regression/dp_pf/non_conjugate_prior/summary/"
 }
 
 switch(sim,
@@ -207,4 +207,4 @@ switch(sdp_type,
 )
 
 # Save the data
-write_xlsx(df, paste(save_loc, sim, "_", sdp_type, "_sim_summary.xlsx", sep = ""))
+write_xlsx(df, paste(save_loc, sim, "_", sdp_type, "_sdp_sim_summary.xlsx", sep = ""))

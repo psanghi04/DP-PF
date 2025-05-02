@@ -67,4 +67,4 @@ str(df)
 colnames(df) <- c("method", "iter", "sample_size", "epsilon", "particles", "ESS", "mu_CI", "mu_coverage", "sigma_CI", "sigma_coverage", "time", "sdp0", "sdp1",
                   "post_mean_mu", "post_var_mu", "post_mean_sigma", "post_var_sigma", "time_per_ess")
 
-write_xlsx(df, "location_scale/rejection_abc/results/rejection_abc_final_sim_summary.xlsx")
+write_xlsx(df, "location_scale/rejection_abc/summary/rejection_abc_final_sim_summary.xlsx")

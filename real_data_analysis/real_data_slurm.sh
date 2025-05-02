@@ -11,13 +11,12 @@
 # Load R module, if necessary
 module load r
 
-SUB_DIR="Real Data Analysis"
-SCRIPT_DIR="Real Data Analysis"
+SUB_DIR="real_data_analysis/data"
+SCRIPT_DIR="real_data_analysis"
 
 # Move Directory To Submission Folder
 cd $SUB_DIR
 id=$((SLURM_ARRAY_TASK_ID % 5 + 1))
 
-# Run the R script with the calculated parameters
-Rscript "$SCRIPT_DIR/Canadian_census_ABCSMC_objectivePerturb_Knorm.R" --shape 6 --scale 4 --sigma1 16 --sigma2 16 --epsilon 0.5 --id $id
+Rscript "$SCRIPT_DIR/canadian_census_dp_pf_objective_perturb_knorm.R" --shape 6 --scale 4 --sigma1 16 --sigma2 16 --epsilon 0.5 --id $id
 

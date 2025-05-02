@@ -10,7 +10,7 @@
 # Load R module, if necessary
 module load r/4.2
 
-SUB_DIR="location_scale/dp_pf/results/"
+SUB_DIR="location_scale/dp_pf/data/"
 
 # Move Directory To Submission Folder
 cd $SUB_DIR
@@ -21,7 +21,7 @@ SCRIPT_DIR="location_scale/dp_pf"
 # Define arrays of epsilon and sample_size values
 epsilons=(0.1 0.5 1.0 2.0)
 sample_sizes=(100 200 300 500 1000)
-particles=(100 200 400)
+particles=(100)
 
 # Loop through each combination of epsilon and sample_size
 for epsilon in "${epsilons[@]}"; do

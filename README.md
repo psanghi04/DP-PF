@@ -1,108 +1,55 @@
 # DP-PF
 
 ## Project Overview  
-This project implements Bayesian linear regression and MCMC workflows, real-data analyses with privacy-preserving methods, and Approximate Bayesian Computation via rejection sampling. Four modules are provided: Linear Regression, MCMC, Real Data Analysis, and Rejection ABC.
+This repository implements DP-PF, a novel particle-filter algorithm for private Bayesian inference that leverages sequential Monte Carlo methods under differential privacy constraints. DP-PF produces weighted samples that strongly converge to the true posterior, guaranteeing consistency and a central limit theorem, enabling valid uncertainty quantification via asymptotic confidence intervals.
 
-## Dependencies  
-- R (>= 4.0)  
-- Required R packages: `...`  
-- SLURM scheduler for batch scripts
+## Repository Structure
 
-## Linear Regression  
-Scripts in `linear_regression/`.
+- **`linear_regression/`**  
+  Conjugate and non-conjugate linear regression experiments using DP-PF, Data Augmentation MCMC, and Rejection-ABC.  
 
-### lr_data_org.R  
-This script organizes and post-processes data from linear regression experiments. It ensures the data is formatted correctly for downstream analysis.  
-**Usage:**  
-Rscript lr_data_org.R
+- **`location_scale/`**  
+  Location-scale experiments with DP-PF and Rejection-ABC.  
+  
+- **`real_data_analysis/`**  
+  Application of DP-PF to real-world datasets (e.g., Canadian census).
 
-### lr_slurm.sh  
-A SLURM batch script for submitting linear regression experiments to a high-performance computing cluster. It automates the execution of R scripts for both conjugate and non-conjugate prior models.  
-**Usage:**  
-sbatch lr_slurm.sh
+## Dependencies
 
-### conjugate_prior/lr_conj.R  
-<Description> 
+- **R ≥ 4.0**  
+- **SLURM**: for batch job scheduling on HPC clusters (If availabe)
 
-**Usage:**  
-Rscript conjugate_prior/lr_conj.R
+## Installation
 
-### non_conjugate_prior/lr_nonconj.R  
-<Description>  
+```bash
+git clone https://github.com/psanghi04/DP-PF.git
+cd DP-PF
+Rscript requirements.R
+```
 
-**Usage:**  
-Rscript non_conjugate_prior/lr_nonconj.R
+## Usage
 
-## MCMC  
-Scripts in `mcmc/`.
+1. **Linear Regression**  
+   Each DP method includes `*_conj.R` script to run conjugate prior setting, `*_nonconj.R` script to run non-conjugate prior setting, and `*_slurm.sh` script to submit the simulations to a HPC cluster.
 
-### mcmc_data_org.R  
-<Description>  
+2. **Location-Scale**  
+   Each DP method includes `*_location_scale.R` script to run the setting and `*_slurm.sh` script to submit the simulations to a HPC.
 
-**Usage:**  
-Rscript mcmc_data_org.R
+3. **Real-Data Analysis**  
+   `canadian_census_dp_pf_objective_perturb_knorm.R` performs DP-PF on the Candian Census data.
 
-### mcmc_slurm.sh  
-A SLURM batch script for submitting MCMC experiments to a high-performance computing cluster. It automates the execution of R scripts for both conjugate and non-conjugate prior models.  
-**Usage:**  
-sbatch mcmc_slurm.sh
+4. **Post-Processing & Visualization**  
+   Each module includes a `*_data_org.R` script to collate RData outputs and a `*_plotter.R` script to generate publication-quality tables and figures.
 
-### conjugate_prior/mcmc_conj.R  
-<Description>
+## Citation
 
-**Usage:**  
-Rscript conjugate_prior/mcmc_conj.R  
-[Note: uses `...` for sampling]
+If you use DP-PF, please cite our paper:
 
-### non_conjugate_prior/mcmc_nonconj.R  
-<Description>  
+```bibtex
+@article{}
+@misc{}
+```
 
-**Usage:**  
-Rscript non_conjugate_prior/mcmc_nonconj.R
+## License
 
-## Real Data Analysis  
-Scripts in `real_data_analysis/`.
-
-### Canadian_Census_DP_PF_ObjectivePerturb_Knorm.R  
-Analyzes real-world Canadian census data using the DP-PF framework with objective perturbation and K-norm regularization. This script applies privacy-preserving Bayesian inference techniques.  
-**Usage:**  
-Rscript Canadian_Census_DP_PF_ObjectivePerturb_Knorm.R  
-[Input: reads census CSV from `data/real/canadian_census.csv`]  
-[Output: writes analysis results to `...`]
-
-### plotter.R  
-Generates visualizations for the results of real data analysis. This script produces plots such as posterior distributions and parameter estimates.  
-**Usage:**  
-Rscript plotter.R
-
-### real_data_slurm.sh  
-A SLURM batch script for submitting real data analysis tasks to a high-performance computing cluster. 
-**Usage:**  
-sbatch real_data_slurm.sh
-
-## Rejection ABC  
-Scripts in `rejection_abc/`.
-
-### rejection_abc.R  
-<Description>  
-
-**Usage:**  
-Rscript rejection_abc.R
-
-### rejection_data_org.R  
-<Description>  
-
-**Usage:**  
-Rscript rejection_data_org.R
-
-### rejection_slurm.sh  
-A SLURM batch script for submitting rejection ABC experiments to a high-performance computing cluster.  
-**Usage:**  
-sbatch rejection_slurm.sh
-
-## How to Cite  
-If you use this code in published work, please cite:  
-> ...
-
-## Contact  
-For questions or issues, please open an issue on the repository or contact ...
+This software is released under the **MIT License**. See [LICENSE](LICENSE) for details.
