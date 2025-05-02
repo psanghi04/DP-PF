@@ -1,0 +1,25 @@
+{
+  "seed": [112123],
+  "sample_size": [100],
+  "mu": [1],
+  "sigma_square": [1],
+  "dp_info": {
+    "lower_bound": [-5],
+    "upper_bound": [5],
+    "epsilon": [1]
+  },
+  "hyper_params": {
+    "hp": [
+      [0, 4],
+      [1, 2]
+    ],
+    "stop_time": [10],
+    "dim": [2],
+    "no_particles": [100]
+  },
+  "hyper_params_bound": [
+    ["-Inf", "Inf"],
+    [0, "Inf"]
+  ],
+  "no_cores": [100]
+}

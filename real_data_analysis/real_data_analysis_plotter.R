@@ -140,7 +140,7 @@ true_values <- data.frame(
 )
 
 # Plot with stepwise mean Retir (because of its interval data) overlay
-ggplot() +
+step_plot <- ggplot() +
   geom_line(data = fitted_values, 
             aes(x = x, y = logistic_pred, group = id, alpha = weight),
             color = "blue") +
@@ -167,15 +167,6 @@ ggplot() +
     plot.title = element_text(size = 23),  
   )
 
+print(step_plot)
 
-# ggplot_show <- function() {
-#   print(beta_1_plot)
-#   print(point_cloud)
-#   print(step_plot)
-# }
-# ggplot_show()
-
-# Save the plots
-# ggsave("plots/beta_1_plot.png", plot = beta_1_plot, width = 8, height = 6)
-# ggsave("plots/point_cloud.png", plot = point_cloud, width = 8, height = 6)
-ggsave("plots/0.95_private_posterior_curves.png", plot = step_plot, width = 8, height = 6)
+ggsave("plots/0.95_private_posterior_curves", plot = step_plot, width = 8, height = 6)

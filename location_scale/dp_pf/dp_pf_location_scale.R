@@ -10,7 +10,7 @@ library(VGAM)
 library(jsonlite)
 library(optparse)
 
-config_file_path <- "~/smcDiffPrivacy/inst/extdata/dp_abc_config.json"
+config_file_path <- "dp_pf_location_scale_config.json"
 
 # Read the configuration file
 config <- fromJSON(config_file_path)

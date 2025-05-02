@@ -36,7 +36,7 @@ Rscript requirements.R
    Each DP method includes `*_location_scale.R` script to run the setting and `*_slurm.sh` script to submit the simulations to a HPC.
 
 3. **Real-Data Analysis**  
-   `canadian_census_dp_pf_objective_perturb_knorm.R` performs DP-PF on the Candian Census data.
+   `canadian_census_dp_pf_objective_perturb_knorm.R` performs DP-PF on the 2021 Canadian Census data.
 
 4. **Post-Processing & Visualization**  
    Each module includes a `*_data_org.R` script to collate RData outputs and a `*_plotter.R` script to generate publication-quality tables and figures.
