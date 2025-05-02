@@ -58,16 +58,6 @@ data <- data.frame(
   weight = weights
 )
 
-# Plot for beta1
-beta_1_plot <- ggplot(data, aes(x = y)) +
-  geom_histogram(aes(y = after_stat(density)), 
-                 bins = 30, fill = "lightblue", color = "blue", alpha = 0.5) +  # Histogram
-  geom_density(aes(weight = weight), fill = "red", alpha = 0.3) +  # Density plot (red)
-  geom_vline(xintercept = 6.822, color = "red", linetype = "dashed", linewidth = 1) +  # True beta1 (red line)
-  scale_y_continuous(name = "weight") +
-  labs(title = expression(paste("Posterior Distribution of ", beta[1])) , x = expression(beta[1]))
-
-
 # Extract beta0, beta1, and weights
 beta <- as.matrix(data[, 1:2])
 weights <- data$weight
@@ -85,17 +75,6 @@ data_sorted <- data_sorted %>%
 data_95 <- data_sorted %>% filter(cum_weight <= 0.95)
 
 cat("data_95 =", sum(data_95$weight), "\n")  # Should be close to 0.95
-
-
-# Point Cloud
-point_cloud <- ggplot(data, aes(x = x, y = y)) +
-  geom_point(aes(size = weight, alpha = weight), color = "blue") +
-  annotate("point", x = -3.825, y = 6.822, 
-           color = "red", size = 4, shape = 8) +  # Non-private fitted value: a single point
-  scale_size_continuous(range = c(1, 5)) +
-  scale_alpha_continuous(range = c(0.1, 0.8)) +
-  labs(title = expression(paste("Joint Posterior Distribution of ", beta[0], " and ", beta[1])),
-       x = expression(beta[0]), y = expression(beta[1]))
 
 # Generate fitted logistic regression values
 # Plot the fitted logistic regression curves
@@ -161,21 +140,32 @@ true_values <- data.frame(
 )
 
 # Plot with stepwise mean Retir (because of its interval data) overlay
-step_plot <- ggplot() +
+ggplot() +
   geom_line(data = fitted_values, 
             aes(x = x, y = logistic_pred, group = id, alpha = weight),
             color = "blue") +
   geom_segment(data = step_data, 
                aes(x = x_start, xend = x_end, 
                    y = mean_retir, yend = mean_retir),
-               color = "black", linewidth = 1.2) +
+               color = "black", size = 1.2) +
   geom_line(data = true_values, 
             aes(x = x, y = logistic_pred), 
-            color = "red", linewidth = 1.2, linetype = "dashed") +
+            color = "red", size = 1.2, linetype = "dashed") +
   scale_alpha_continuous(range = c(0.1, 0.8)) +
-  labs(title = "95% Private Curves and Non-private Curve",
-       x = "x",
-       y = "Probability")
+  labs(title = "95% Private Posterior Curves",
+       x = "x", 
+       y = "Probability") +
+  theme_minimal() + 
+  geom_hline(yintercept=0.5, linetype = "dotted", linewidth = 2.5) +
+  theme(
+    axis.text.x = element_text(size = 17),  
+    axis.text.y = element_text(size = 17),
+    axis.title.x = element_text(size = 19),
+    axis.title.y = element_text(size = 19),
+    legend.text = element_text(size = 17),
+    legend.title = element_text(size = 17),
+    plot.title = element_text(size = 23),  
+  )
 
 
 # ggplot_show <- function() {
