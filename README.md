@@ -46,7 +46,12 @@ Rscript requirements.R
 If you use DP-PF, please cite our paper:
 
 ```bibtex
-@article{}
+@article{chen2025particle,
+  title={Particle Filter for Bayesian Inference on Privatized Data},
+  author={Chen, Yu-Wei and Sanghi, Pranav and Awan, Jordan},
+  journal={arXiv preprint arXiv:2505.00877},
+  year={2025}
+}
 @misc{}
 ```
 
