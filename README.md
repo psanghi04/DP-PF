@@ -14,6 +14,9 @@ This repository implements DP-PF, a novel particle-filter algorithm for private 
 - **`real_data_analysis/`**  
   Application of DP-PF to real-world datasets (e.g., Canadian census).
 
+- **`particle_filter_video_visualization`**
+  Demonstrates how particles shift towards posterior distribution.
+
 ## Dependencies
 
 - **R ≥ 4.0**  
